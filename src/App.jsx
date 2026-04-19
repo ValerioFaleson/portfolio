@@ -298,7 +298,7 @@ export default function App() {
   };
   const downloadCV = () => {
     const link = document.createElement("a");
-    link.href = "/CV_EVONDRAY_Faleson_Valerio.pdf";
+    link.href = "/portfolio/CV_EVONDRAY_Faleson_Valerio.pdf";
     link.download = "CV_EVONDRAY_Faleson_Valerio.pdf";
     document.body.appendChild(link);
     link.click();
