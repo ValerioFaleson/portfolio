@@ -41,9 +41,29 @@ section{min-height:100vh;display:flex;align-items:center;padding:6rem 2rem 4rem 
 .resume-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.8rem}
 .contact-grid{display:grid;grid-template-columns:1fr 2fr;gap:1.8rem;align-items:start}
 .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:.65rem;margin-bottom:1.6rem}
-.contact-form-grid{display:flex; flex-direction:row; flex-wrap:wrap; gap:1rem}
+.contact-form-grid{display:flex; flex-direction:column; gap:1rem}
 .hero-buttons{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:3rem}
 .footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+input,textarea{
+  width:100%;
+  padding:12px 16px;
+  border-radius:8px;
+  border:1px solid rgba(99,149,255,0.2);
+  background:rgba(14,28,64,0.3);
+  color:#e2e8f0;
+  font-size:14px;
+  font-family:'Outfit',sans-serif;
+  transition:all .2s;
+  min-height:48px;
+}
+input:focus,textarea:focus{
+  border-color:#00b7ff;
+  box-shadow:0 0 0 2px rgba(0,183,255,0.2);
+  outline:none;
+}
+textarea{
+  resize:vertical;
+}
 @media (max-width:1024px){
   .grid-2,.grid-3,.resume-grid,.contact-grid,.info-grid,.contact-form-grid{grid-template-columns:1fr}
   .grid-4{grid-template-columns:repeat(4,minmax(70px,1fr))}
