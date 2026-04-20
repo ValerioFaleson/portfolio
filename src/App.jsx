@@ -30,11 +30,36 @@ body{font-family:'Outfit',sans-serif;background:#060d1f;color:#e2e8f0;overflow-x
 .skill-fill::after{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.22),transparent);animation:scan 2s linear infinite}
 .tech-tag{display:inline-flex;align-items:center;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:600;background:rgba(30,77,216,0.15);border:1px solid rgba(99,149,255,0.2);color:#7eb3ff;letter-spacing:.04em}
 section{min-height:100vh;display:flex;align-items:center;padding:6rem 2rem 4rem 5.5rem}
-.section-title{font-size:clamp(1.9rem,4vw,2.7rem);font-weight:900;color:#fff;margin-bottom:.35rem;font-family:'Outfit',sans-serif}
-.section-title .highlight{background:linear-gradient(135deg,#00b7ff,#1e4dd8);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-input,textarea{background:rgba(6,13,31,0.75);border:1px solid rgba(99,149,255,0.18);color:#e2e8f0;padding:10px 14px;border-radius:10px;font-family:'Outfit',sans-serif;font-size:13px;outline:none;transition:border-color .2s;width:100%}
-input:focus,textarea:focus{border-color:rgba(0,183,255,0.5)}
-@media(max-width:768px){section{padding:5rem 1rem 3rem 1rem}.side-nav{display:none!important}}
+.section{
+  width:100%;
+}
+.section-inner{max-width:980px;margin:0 auto;width:100%}
+.grid-2{display:grid;grid-template-columns:300px 1fr;gap:2.8rem;align-items:center}
+.grid-3{display:grid;grid-template-columns:1fr 1.2fr;gap:2.8rem;align-items:start}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:.9rem}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1.1rem}
+.resume-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.8rem}
+.contact-grid{display:grid;grid-template-columns:1fr 1.6fr;gap:1.8rem;align-items:start}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:.65rem;margin-bottom:1.6rem}
+.contact-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.hero-buttons{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:3rem}
+.footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+@media (max-width:1024px){
+  .grid-2,.grid-3,.resume-grid,.contact-grid,.info-grid,.contact-form-grid{grid-template-columns:1fr}
+  .grid-4{grid-template-columns:repeat(4,minmax(70px,1fr))}
+  .section{padding:5rem 1.5rem 4rem 1.5rem !important}
+}
+@media(max-width:768px){section{padding:4rem 1rem 3rem 1rem !important}.side-nav{display:none!important}
+  .grid-4{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .footer{flex-direction:column !important;align-items:center !important;text-align:center}
+  .hero-buttons{gap:12px}
+  .btn-fullwidth{width:100% !important;max-width:460px}
+  .projects-grid{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .resume-grid{grid-template-columns:1fr}
+  .section-inner{padding:0}
+}
+
 `;
 
 const NAV = [
@@ -353,7 +378,7 @@ export default function App() {
       )}
 
       {/* ════ HOME ════ */}
-      <section id="home" style={{ minHeight:"100vh", display:"flex", alignItems:"center", justifyContent:"center", flexDirection:"column", textAlign:"center", padding:"5rem 2rem 4rem 5.5rem", position:"relative", zIndex:1 }}>
+      <section id="home" className="section home" style={{ minHeight:"100vh", display:"flex", alignItems:"center", justifyContent:"center", flexDirection:"column", textAlign:"center", position:"relative", zIndex:1 }}>
 
         {/* Avatar */}
         <div className="float-anim" style={{ marginBottom:"1.8rem", position:"relative", display:"inline-block" }}>
@@ -390,7 +415,7 @@ export default function App() {
           </p> */}
         </div>
 
-        <div className="fade-up" style={{ animationDelay:".2s", display:"flex", gap:14, justifyContent:"center", flexWrap:"wrap", marginBottom:"3rem" }}>
+        <div className="fade-up hero-buttons" style={{ animationDelay:".2s" }}>
           {btn("Voir mes projets", "fa-solid fa-folder-open", () => go("projects"), true)}
           {btn("Télécharger CV",   "fa-solid fa-download",    downloadCV)}
         </div>
@@ -407,8 +432,8 @@ export default function App() {
       </section>
 
       {/* ════ ABOUT ════ */}
-      <section id="about" style={{ position:"relative", zIndex:1, padding:"6rem 2rem 4rem 5.5rem" }}>
-        <div style={{ maxWidth:980, margin:"0 auto", display:"grid", gridTemplateColumns:"300px 1fr", gap:"2.8rem", alignItems:"center" }}>
+      <section id="about" className="section about" style={{ position:"relative", zIndex:1 }}>
+        <div className="section-inner grid-2 about-grid" style={{ maxWidth:980, margin:"0 auto" }}>
           {/* Card */}
           <div className="neon-box" style={{ borderRadius:22, padding:"2rem", textAlign:"center" }}>
             <div>
@@ -429,7 +454,7 @@ export default function App() {
               Curieux et autonome, j'apprends constamment de nouvelles technologies et j'aime relever des défis complexes.
             </p>
 
-            <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"0.65rem", marginBottom:"1.6rem" }}>
+            <div className="info-grid">
               {[
                 ["fa-solid fa-envelope","Email","evondrayfalesonv@gmail.com"],
                 ["fa-solid fa-phone","Téléphone","+261 33 89 601 08"],
@@ -452,8 +477,8 @@ export default function App() {
       </section>
 
       {/* ════ SKILLS ════ */}
-      <section id="skills" style={{ position:"relative", zIndex:1, padding:"6rem 2rem 4rem 5.5rem" }}>
-        <div style={{ maxWidth:980, margin:"0 auto", display:"grid", gridTemplateColumns:"1fr 1.2fr", gap:"2.8rem", alignItems:"start" }}>
+      <section id="skills" className="section skills" style={{ position:"relative", zIndex:1 }}>
+        <div className="section-inner grid-3 skills-grid" style={{ maxWidth:980, margin:"0 auto" }}>
           <div>
             <span style={{ fontSize:10, fontWeight:700, textTransform:"uppercase", letterSpacing:".2em", color:"#00b7ff" }}>Stack technique</span>
             <h2 className="section-title" style={{ marginTop:8, marginBottom:"1rem" }}>
@@ -464,7 +489,7 @@ export default function App() {
             </p>
 
             {/* Icon grid */}
-            <div className="neon-box" style={{ borderRadius:18, padding:"1.5rem", display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:"0.9rem" }}>
+            <div className="neon-box grid-4" style={{ borderRadius:18, padding:"1.5rem" }}>
               {[
                 ["fa-brands fa-html5","#e34c26"],["fa-brands fa-css3-alt","#264de4"],
                 ["fa-brands fa-js","#f7df1e"],["fa-brands fa-react","#61dafb"],
@@ -487,27 +512,27 @@ export default function App() {
       </section>
 
       {/* ════ PROJECTS ════ */}
-      <section id="projects" style={{ position:"relative", zIndex:1, padding:"6rem 2rem 4rem 5.5rem", flexDirection:"column", alignItems:"flex-start" }}>
-        <div style={{ maxWidth:980, margin:"0 auto", width:"100%" }}>
+      <section id="projects" className="section projects" style={{ position:"relative", zIndex:1, flexDirection:"column", alignItems:"flex-start" }}>
+        <div className="section-inner" style={{ maxWidth:980, margin:"0 auto", width:"100%" }}>
           <div style={{ textAlign:"center", marginBottom:"3rem" }}>
             <span style={{ fontSize:10, fontWeight:700, textTransform:"uppercase", letterSpacing:".2em", color:"#00b7ff" }}>Réalisations</span>
             <h2 className="section-title" style={{ marginTop:8 }}>Mon <span className="highlight">portfolio</span></h2>
             <p style={{ color:"#3d5a96", fontSize:13, marginTop:6 }}>Une sélection de mes projets récents</p>
           </div>
-          <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(270px,1fr))", gap:"1.1rem" }}>
+          <div className="projects-grid">
             {PROJECTS.map(p => <ProjectCard key={p.title} p={p} />)}
           </div>
         </div>
       </section>
 
       {/* ════ RESUME ════ */}
-      <section id="resume" style={{ position:"relative", zIndex:1, padding:"6rem 2rem 4rem 5.5rem", flexDirection:"column", alignItems:"flex-start" }}>
-        <div style={{ maxWidth:980, margin:"0 auto", width:"100%" }}>
+      <section id="resume" className="section resume" style={{ position:"relative", zIndex:1, flexDirection:"column", alignItems:"flex-start" }}>
+        <div className="section-inner" style={{ maxWidth:980, margin:"0 auto", width:"100%" }}>
           <div style={{ textAlign:"center", marginBottom:"3rem" }}>
             <span style={{ fontSize:10, fontWeight:700, textTransform:"uppercase", letterSpacing:".2em", color:"#00b7ff" }}>Parcours</span>
             <h2 className="section-title" style={{ marginTop:8 }}>Mon <span className="highlight">CV</span></h2>
           </div>
-          <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"1.8rem" }}>
+          <div className="resume-grid">
             {/* Formation */}
             <div>
               <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:"1.4rem" }}>
@@ -556,15 +581,15 @@ export default function App() {
       </section>
 
       {/* ════ CONTACT ════ */}
-      <section id="contact" style={{ position:"relative", zIndex:1, padding:"6rem 2rem 4rem 5.5rem", flexDirection:"column", alignItems:"flex-start" }}>
-        <div style={{ maxWidth:980, margin:"0 auto", width:"100%" }}>
+      <section id="contact" className="section contact" style={{ position:"relative", zIndex:1, flexDirection:"column", alignItems:"flex-start" }}>
+        <div className="section-inner" style={{ maxWidth:980, margin:"0 auto", width:"100%" }}>
           <div style={{ textAlign:"center", marginBottom:"3rem" }}>
             <span style={{ fontSize:10, fontWeight:700, textTransform:"uppercase", letterSpacing:".2em", color:"#00b7ff" }}>Contact</span>
             <h2 className="section-title" style={{ marginTop:8 }}>Me <span className="highlight">contacter</span></h2>
             <p style={{ color:"#3d5a96", fontSize:13, marginTop:6 }}>Disponible pour missions freelance, alternances ou opportunités full-time.</p>
           </div>
 
-          <div style={{ display:"grid", gridTemplateColumns:"1fr 1.6fr", gap:"1.8rem", alignItems:"start" }}>
+          <div className="contact-grid">
             {/* Info */}
             <div style={{ display:"flex", flexDirection:"column", gap:"0.8rem" }}>
               {[
@@ -601,7 +626,7 @@ export default function App() {
 
             {/* Form */}
             <form ref={formRef} onSubmit={submit} className="neon-box" style={{ borderRadius:20, padding:"1.7rem", display:"flex", flexDirection:"column", gap:"1rem" }}>
-              <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"1rem" }}>
+              <div className="contact-form-grid">
                 {[["name","Nom","Votre nom","text"],["email","Email","votre@email.com","email"]].map(([k,lb,ph,t]) => (
                   <div key={k}>
                     <label style={{ display:"block", fontSize:9, fontWeight:700, textTransform:"uppercase", letterSpacing:".1em", color:"#2d4272", marginBottom:5 }}>{lb}</label>
@@ -656,7 +681,7 @@ export default function App() {
       </section>
 
       {/* ════ FOOTER ════ */}
-      <footer style={{ borderTop:"1px solid rgba(99,149,255,0.1)", padding:"1.4rem 2rem 1.4rem 5.5rem", background:"rgba(4,9,22,0.85)", backdropFilter:"blur(10px)", display:"flex", alignItems:"center", justifyContent:"space-between", flexWrap:"wrap", gap:10, position:"relative", zIndex:1 }}>
+      <footer className="footer" style={{ borderTop:"1px solid rgba(99,149,255,0.1)", padding:"1.4rem 2rem 1.4rem 5.5rem", background:"rgba(4,9,22,0.85)", backdropFilter:"blur(10px)", position:"relative", zIndex:1 }}>
         <span style={{ fontFamily:"'Fira Code',monospace", fontSize:15, fontWeight:700, color:"#1e4dd8" }}>FV<span style={{color:"#00b7ff"}}>.</span></span>
         <p style={{ fontSize:11, color:"#1e2d4a" }}>© 2025 Faleson Valério · Conçu avec <span style={{color:"#00b7ff"}}>♥</span> à Madagascar</p>
         <div style={{ display:"flex", gap:7 }}>
