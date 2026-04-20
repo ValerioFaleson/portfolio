@@ -34,6 +34,8 @@ section{min-height:100vh;display:flex;align-items:center;padding:6rem 2rem 4rem 
   width:100%;
 }
 .section-inner{max-width:980px;margin:0 auto;width:100%}
+.section-title{font-size:28px;font-weight:800;color:#fff;line-height:1.2;margin:0}
+.highlight{color:#00b7ff}
 .grid-2{display:grid;grid-template-columns:300px 1fr;gap:2.8rem;align-items:center}
 .grid-3{display:grid;grid-template-columns:1fr 1.2fr;gap:2.8rem;align-items:start}
 .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:.9rem}
