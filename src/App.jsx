@@ -39,9 +39,9 @@ section{min-height:100vh;display:flex;align-items:center;padding:6rem 2rem 4rem 
 .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:.9rem}
 .projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1.1rem}
 .resume-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.8rem}
-.contact-grid{display:grid;grid-template-columns:1fr 1.6fr;gap:1.8rem;align-items:start}
+.contact-grid{display:grid;grid-template-columns:1fr 2fr;gap:1.8rem;align-items:start}
 .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:.65rem;margin-bottom:1.6rem}
-.contact-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.contact-form-grid{display:flex; flex-direction:row; flex-wrap:wrap; gap:1rem}
 .hero-buttons{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:3rem}
 .footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
 @media (max-width:1024px){
