@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import emailjs from "@emailjs/browser";
-import valerio from "./assets/valerio.JPG";
+import valerio from "./assets/valerio.png";
 
 // ─── Ajoute dans index.html <head> ────────────────────────────────────────────
 // <link rel="preconnect" href="https://fonts.googleapis.com">
